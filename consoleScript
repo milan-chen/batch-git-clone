@@ -1,0 +1,14 @@
+var projectElements = document.getElementsByClassName('project');
+var prefix = 'git@xxxxx.com:';
+var results = Array.from(projectElements).map((element) => {
+    var href = element.getAttribute('href');
+    href = href.startsWith('/') ? href.substring(1) : href;
+    return prefix + href;
+}).join('\n');
+
+var blob = new Blob([results], {type: "text/plain;charset=utf-8"});
+var link = document.createElement("a");
+
+link.download = "11111.txt";
+link.href = URL.createObjectURL(blob);
+link.click();
